@@ -26,9 +26,9 @@ const Header = () => (
 )
 
 const profiles = [
-  { uri: "https://via.placeholder.com/150.png", name: "Jeff" },
-  { uri: "https://via.placeholder.com/150.png", name: "Bart" }
-]
+  {uri: 'https://via.placeholder.com/150.png', name: 'Jeff', id: 0},
+  {uri: 'https://via.placeholder.com/150.png', name: 'Bart', id: 1},
+];
 
 const App = () => {
   return (
