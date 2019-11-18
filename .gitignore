@@ -22,7 +22,6 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
 
 # Android/IntelliJ
 #
@@ -31,10 +30,6 @@ build/
 .gradle
 local.properties
 *.iml
-
-# Visual Studio Code
-#
-.vscode/
 
 # node.js
 #

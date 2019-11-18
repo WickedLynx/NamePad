@@ -1,6 +1,5 @@
 import React from 'react';
 import {SafeAreaView, View, Text, StatusBar, FlatList} from 'react-native';
-
 import ProfileThumb from './components/ProfileThumb';
 
 const Header = () => (
