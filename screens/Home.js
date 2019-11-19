@@ -1,19 +1,6 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  StatusBar,
-  FlatList,
-  Button,
-} from 'react-native';
+import {SafeAreaView, View, StatusBar, FlatList, Button} from 'react-native';
 import ProfileThumb from '../components/ProfileThumb';
-
-const Header = () => (
-  <View>
-    <Text style={{fontSize: 30, fontWeight: 'bold'}}>NamePad</Text>
-  </View>
-);
 
 const profiles = [
   {uri: 'https://via.placeholder.com/150.png', name: 'Jeff', id: 0},
@@ -22,12 +9,11 @@ const profiles = [
   {uri: 'https://via.placeholder.com/150.png', name: 'Mikko', id: 3},
 ];
 
-export const Home = () => (
+export const Home = props => (
   <>
     <StatusBar barStyle="dark-content" />
     <SafeAreaView>
       <View style={{paddingHorizontal: 30}}>
-        <Header />
         <FlatList
           data={profiles}
           renderItem={({item}) => <ProfileThumb {...item} />}
@@ -39,14 +25,14 @@ export const Home = () => (
           }}
           style={{paddingVertical: 30}}
         />
-        <Button title="add" />
+        <Button title="add" onPress={() => props.navigation.navigate('Add')} />
       </View>
     </SafeAreaView>
   </>
 );
 
 Home.navigationOptions = {
-  title: 'Welcome',
+  title: 'Profiles',
 };
 
 export default Home;
