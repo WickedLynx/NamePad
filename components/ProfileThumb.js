@@ -1,12 +1,7 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {View, Image, Text} from 'react-native';
 
-interface ProfileThumbProps {
-  uri: string;
-  name: string;
-}
-
-const ProfileThumb: FC<ProfileThumbProps> = ({uri, name}) => (
+const ProfileThumb = ({uri, name}) => (
   <View style={{backgroundColor: 'blue'}}>
     <Image
       source={{uri: uri}}
