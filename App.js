@@ -11,6 +11,8 @@ const Header = () => (
 const profiles = [
   {uri: 'https://via.placeholder.com/150.png', name: 'Jeff', id: 0},
   {uri: 'https://via.placeholder.com/150.png', name: 'Bart', id: 1},
+  {uri: 'https://via.placeholder.com/150.png', name: 'Nizar', id: 2},
+  {uri: 'https://via.placeholder.com/150.png', name: 'Mikko', id: 3},
 ];
 
 const App = () => {
@@ -25,7 +27,11 @@ const App = () => {
             renderItem={({item}) => <ProfileThumb {...item} />}
             horizontal={false}
             numColumns={2}
-            columnWrapperStyle={{justifyContent: 'space-between'}}
+            columnWrapperStyle={{
+              justifyContent: 'space-around',
+              paddingBottom: 30,
+            }}
+            style={{paddingVertical: 30}}
           />
         </View>
       </SafeAreaView>
