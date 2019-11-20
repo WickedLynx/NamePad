@@ -13,8 +13,6 @@ const Add = () => (
       style={{
         flex: 1,
         width: '100%',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
       }}
       type={RNCamera.Constants.Type.back}
       flashMode={RNCamera.Constants.FlashMode.on}
@@ -36,38 +34,38 @@ const Add = () => (
     />
     <View
       style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        flex: 1,
-        flexDirection: 'column',
         alignItems: 'center',
+        bottom: 0,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        left: 0,
         padding: 30,
-        justifyContent: 'space-between',
-        height: 200,
+        position: 'absolute',
+        right: 0,
+        top: 0,
       }}>
       <TextInput
         style={{
-          height: 44,
-          width: '100%',
           backgroundColor: 'rgba(50, 50, 50, 0.5)',
           borderColor: 'gray',
           borderRadius: 8,
           borderWidth: 1,
           color: 'white',
+          height: 44,
           paddingHorizontal: 16,
+          width: '100%',
         }}
         placeholder="Name"
         placeholderTextColor="#aaa"
       />
       <TouchableOpacity
         style={{
-          width: 60,
-          height: 60,
+          borderColor: 'white',
           borderRadius: 30,
           borderWidth: 8,
-          borderColor: 'white',
+          height: 60,
+          marginTop: 32,
+          width: 60,
         }}
       />
     </View>
