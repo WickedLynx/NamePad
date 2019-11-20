@@ -1,6 +1,11 @@
-import React from 'react';
-import {View, TouchableOpacity, TextInput} from 'react-native';
+import {
+  KeyboardAvoidingView,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {RNCamera} from 'react-native-camera';
+import React from 'react';
 
 const Add = () => (
   <View
@@ -32,39 +37,59 @@ const Add = () => (
         console.log(barcodes);
       }}
     />
-    <View
+    <KeyboardAvoidingView
+      behavior="padding"
       style={{
-        alignItems: 'center',
         bottom: 0,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
         left: 0,
-        padding: 30,
         position: 'absolute',
         right: 0,
         top: 0,
+        justifyContent: 'flex-end',
       }}>
-      <TextInput
+      <View
         style={{
-          backgroundColor: 'rgba(50, 50, 50, 0.5)',
-          borderColor: 'gray',
-          borderRadius: 8,
-          borderWidth: 1,
-          color: 'white',
-          height: 44,
-          paddingHorizontal: 16,
           width: '100%',
-        }}
-        placeholder="Name"
-        placeholderTextColor="#aaa"
-      />
+          padding: 30,
+          alignItems: 'center',
+          paddingBottom: 120,
+        }}>
+        <View
+          style={{
+            backgroundColor: 'rgba(50, 50, 50, 0.5)',
+            borderColor: 'gray',
+            borderRadius: 8,
+            borderWidth: 1,
+            width: '100%',
+          }}>
+          <TextInput
+            selectionColor="rgb(200,200,200)"
+            returnKeyType="next"
+            style={{
+              fontSize: 18,
+              color: 'white',
+              height: 44,
+              paddingHorizontal: 16,
+            }}
+            placeholder="Name"
+            placeholderTextColor="#aaa"
+          />
+        </View>
+      </View>
+    </KeyboardAvoidingView>
+    <View
+      style={{
+        alignItems: 'center',
+        bottom: 30,
+        position: 'absolute',
+        width: '100%',
+      }}>
       <TouchableOpacity
         style={{
           borderColor: 'white',
           borderRadius: 30,
           borderWidth: 8,
           height: 60,
-          marginTop: 32,
           width: 60,
         }}
       />
