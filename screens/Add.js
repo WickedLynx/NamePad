@@ -1,42 +1,15 @@
 import {
+  Image,
   KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {RNCamera} from 'react-native-camera';
-import React from 'react';
+import React, {Component} from 'react';
 
-const Add = () => (
-  <View
-    style={{
-      flex: 1,
-      flexDirection: 'column',
-      backgroundColor: 'black',
-    }}>
-    <RNCamera
-      style={{
-        flex: 1,
-        width: '100%',
-      }}
-      type={RNCamera.Constants.Type.back}
-      flashMode={RNCamera.Constants.FlashMode.on}
-      androidCameraPermissionOptions={{
-        title: 'Permission to use camera',
-        message: 'We need your permission to use your camera',
-        buttonPositive: 'Ok',
-        buttonNegative: 'Cancel',
-      }}
-      androidRecordAudioPermissionOptions={{
-        title: 'Permission to use audio recording',
-        message: 'We need your permission to use your audio',
-        buttonPositive: 'Ok',
-        buttonNegative: 'Cancel',
-      }}
-      onGoogleVisionBarcodesDetected={({barcodes}) => {
-        console.log(barcodes);
-      }}
-    />
+const PersonInput = ({camera, setCapturedImageUri}) => (
+  <>
     <KeyboardAvoidingView
       behavior="padding"
       style={{
@@ -92,13 +65,87 @@ const Add = () => (
           height: 60,
           width: 60,
         }}
+        onPress={async () => {
+          if (typeof camera === 'undefined') {
+            return;
+          }
+          const options = {quality: 0.5, base64: true};
+          const data = await camera.takePictureAsync(options);
+          console.log('our data', Object.keys(data));
+          setCapturedImageUri(data.uri);
+        }}
       />
     </View>
-  </View>
+  </>
 );
 
-Add.navigationOptions = {
-  title: 'Add Profile',
-};
+class Add extends Component {
+  static navigationOptions = {
+    title: 'Add Profile',
+  };
+
+  state = {
+    capturedImageUri: null,
+  };
+
+  setCapturedImageUri = uri => {
+    this.setState({
+      capturedImageUri: uri,
+    });
+  };
+
+  render() {
+    const {capturedImageUri} = this.state;
+    return (
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          backgroundColor: 'black',
+        }}>
+        {capturedImageUri ? (
+          <View>
+            <Image source={{uri: capturedImageUri}} />
+            <PersonInput />
+          </View>
+        ) : (
+          <RNCamera
+            style={{
+              flex: 1,
+              width: '100%',
+            }}
+            type={RNCamera.Constants.Type.back}
+            flashMode={RNCamera.Constants.FlashMode.on}
+            androidCameraPermissionOptions={{
+              title: 'Permission to use camera',
+              message: 'We need your permission to use your camera',
+              buttonPositive: 'Ok',
+              buttonNegative: 'Cancel',
+            }}
+            androidRecordAudioPermissionOptions={{
+              title: 'Permission to use audio recording',
+              message: 'We need your permission to use your audio',
+              buttonPositive: 'Ok',
+              buttonNegative: 'Cancel',
+            }}
+            onGoogleVisionBarcodesDetected={({barcodes}) => {
+              console.log(barcodes);
+            }}>
+            {({camera, status, recordAudioPermissionStatus}) =>
+              status !== 'READY' ? (
+                <View style={{backgroundColor: 'red'}} />
+              ) : (
+                <PersonInput
+                  camera={camera}
+                  setCapturedImageUri={this.setCapturedImageUri}
+                />
+              )
+            }
+          </RNCamera>
+        )}
+      </View>
+    );
+  }
+}
 
 export default Add;
